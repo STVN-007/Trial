@@ -1,0 +1,467 @@
+<html>
+    <head>
+        <title>JavaScript Object Application</title>
+        <style>
+			body{
+					background: linear-gradient(180deg, #211C40,#231559,#3E2EA6,#BF45AB,#EFC2CF);
+				}
+			.div1 {
+					display:block;
+					min-height:150px;
+					min-width:100px;
+					color:#EFC2CF;
+					font: normal bold 2.5rem / 1 '';
+					text-align:center;
+					}
+			.heading {
+						background-image: url(https://scitechdaily.com/images/White-Dwarf-Star-With-Planet.jpg);
+						-webkit-background-clip: text;
+						background-clip: text;
+						-webkit-text-fill-color: transparent;
+						background-size: 400%;
+						background-position: -400%;
+						animation: animatedText 6.5s infinite alternate-reverse;
+					}
+			@keyframes animatedText{
+						  from{
+							background-position: 0%;
+						  }
+						  to{
+							background-position: 100%;
+							}
+						
+						}
+			.div2 {
+				background: linear-gradient(180deg,#EFC2CF,#BF45AB);
+				display:block;
+				border:double;
+				min-height:150px;
+				min-width:100px;
+				overflow:auto;
+				color:#211C40;
+				padding:1em;
+				margin-right:75em;
+				font-size:20px;
+				position:fixed;
+				height:250px;
+			}
+			.div3 {
+				background: linear-gradient(180deg,#EFC2CF,#BF45AB);
+				display:block;
+				border:double;
+				min-height:150px;
+				min-width:100px;
+				overflow:auto;
+				color:#211C40;
+				padding:1em;
+				margin-top:9em;
+				margin-left:19em;
+				font-size:20px;
+				position:fixed;
+				height:250px;
+			}
+			.div4 {
+				background: linear-gradient(180deg,#EFC2CF,#BF45AB);
+				display:block;
+				border:double;
+				min-height:150px;
+				min-width:100px;
+				overflow:auto;
+				color:#211C40;
+				padding:.5em;
+				margin-left:36em;
+				font-size:20px;
+				position:fixed;
+				height:270px;
+			}
+			.div5 {
+				background: linear-gradient(180deg,#EFC2CF,#BF45AB);
+				display:block;
+				border:double;
+				min-height:150px;
+				min-width:100px;
+				overflow:auto;
+				color:#211C40;
+				padding:1em;
+				margin-left:55em;
+				font-size:20px;
+				position:fixed;
+				height:250px;
+				margin-top:9em;
+			}
+			.div6 {
+				background: linear-gradient(180deg,#EFC2CF,#BF45AB);
+				display:block;
+				border:double;
+				min-height:150px;
+				min-width:100px;
+				overflow:auto;
+				color:#211C40;
+				padding:1em;
+				margin-left:74em;
+				font-size:20px;
+				position:fixed;
+				height:250px;
+			}
+			.img1 {
+				display: block;
+				position:fixed;
+				top:-40px;
+				left:27em;
+			}
+			.img2 {
+				display: block;
+				position:fixed;
+				top:-40px;
+				right:27em;
+			}
+			.img3 {
+				display: block;
+				position:fixed;
+				top:40em;
+				right:27em;
+			}
+		</style>
+		<script>
+				//ArrayObject
+				function Student(name, age, hobby) 
+				{
+					this.name = name;
+					this.age = age;
+					this.hobby = hobby;
+				}
+				var students = [];
+				function addStudent(event) 
+				{
+					event.preventDefault();
+					var name = document.getElementById('name').value;
+					var age = parseInt(document.getElementById('age').value);
+					var hobby = document.getElementById('hobby').value;
+					var student = new Student(name, age, hobby);
+					students.push(student);
+					document.getElementById('name').value = '';
+					document.getElementById('age').value = '';
+					document.getElementById('hobby').value = '';
+					displayStudents();
+				}
+				function displayStudents() 
+				{
+					var table = "<table  border ='1'> <tr><th>   Name   </th><th>   Age   </th><th>   Hobby   </th></tr>"
+		            for (var i=0; i<students.length; i++)
+						{
+     	                    table+="<tr><td>"+students[i].name+"</td><td>"+students[i].age+"</td><td>"+students[i].hobby+"</td></tr>"				
+	                    }
+						table+="</table>";
+						document.getElementById("show").innerHTML = table;
+				}
+				
+				//DateObject
+				function Event(title, date) 
+				{
+					this.title = title;
+					this.date = date;
+				}
+				var events = [];
+				function addEvent(event) 
+				{
+					event.preventDefault(); 
+					var title = document.getElementById('title').value;
+					var date = new Date(document.getElementById('date').value);
+					var eventObj = new Event(title, date);
+					events.push(eventObj);
+					document.getElementById('title').value = '';
+					document.getElementById('date').value = '';
+					displayEvents();
+				}	
+				function displayEvents() 
+				{
+				  var output = document.getElementById('show1');
+				  output.innerHTML = '';
+
+				  for (var i = 0; i < events.length; i++) 
+				  {
+					var eventObj = events[i];
+					output.innerHTML += '<p>Title: ' + eventObj.title + '</p>';
+					output.innerHTML += '<p>Date: ' + eventObj.date.toLocaleDateString() + '</p>';
+				  }
+				}
+				
+				//MathObjects
+				function MathOperation(operation, num1, num2) 
+				{
+				  this.operation = operation;
+				  this.num1 = num1;
+				  this.num2 = num2;
+				  this.result = performOperation(this.operation, this.num1, this.num2);
+				}
+				function performOperation(operation, num1, num2) 
+				{
+				  switch (operation) 
+				  {
+					case '+':
+					  return num1 + num2;
+					case '-':
+					  return num1 - num2;
+					case '*':
+					  return num1 * num2;
+					case '/':
+					  return num1 / num2;
+					default:
+					  return NaN;
+				  }
+				}
+				var mathOperations = [];
+				function addMathOperation(event) 
+				{
+				  event.preventDefault();
+				  var operation = document.getElementById('operation').value;
+				  var num1 = parseFloat(document.getElementById('num1').value);
+				  var num2 = parseFloat(document.getElementById('num2').value);
+				  var mathOperationObj = new MathOperation(operation, num1, num2);
+				  mathOperations.push(mathOperationObj);
+				  document.getElementById('operation').value = '';
+				  document.getElementById('num1').value = '';
+				  document.getElementById('num2').value = '';
+				  displayMathOperations();
+				}
+				function displayMathOperations() 
+				{
+				  var output = document.getElementById('show2');
+				  output.innerHTML = ''; 
+
+				  for (var i = 0; i < mathOperations.length; i++) 
+				  {
+					var mathOperationObj = mathOperations[i];
+					output.innerHTML += '<p>Operation: ' + mathOperationObj.num1 +  mathOperationObj.operation + + mathOperationObj.num2 + ' = ' + mathOperationObj.result +'</p>';
+					output.innerHTML += '<hr>';
+				  }
+				}
+				
+				//numberObjects			
+				function NumberObject(number) 
+				{
+				  this.number = number;
+				  this.isEven = isEvenNumber(this.number);
+				  this.isPositive = isPositiveNumber(this.number);
+				  this.isPrime = isPrimeNumber(this.number);
+				}
+				function isEvenNumber(number) 
+				{
+				  return number % 2 === 0;
+				}
+				function isPositiveNumber(number) 
+				{
+				  return number > 0;
+				}
+				function isPrimeNumber(number) 
+				{
+				  if (number <= 1) 
+				  {
+					return false;
+				  }
+
+				  for (var i = 2; i <= Math.sqrt(number); i++) 
+				  {
+					if (number % i === 0) 
+					{
+					  return false;
+					}
+				  }
+				  return true;
+				}
+				var numberObjects = [];
+				function addNumberObject(event) 
+				{
+				  event.preventDefault();
+				  var number = parseInt(document.getElementById('number').value);
+				  var numberObject = new NumberObject(number);
+				  numberObjects.push(numberObject);
+				  document.getElementById('number').value = '';
+				  displayNumberObjects();
+				}
+				function displayNumberObjects() 
+				{
+				  var output = document.getElementById('show3');
+				  output.innerHTML = ''; 
+				  for (var i = 0; i < numberObjects.length; i++) 
+				  {
+					var numberObject = numberObjects[i];
+					output.innerHTML += '<p>Number: ' + numberObject.number + '</p>';
+					output.innerHTML += '<p>Is Even: ' + numberObject.isEven + '</p>';
+					output.innerHTML += '<p>Is Positive: ' + numberObject.isPositive + '</p>';
+					output.innerHTML += '<p>Is Prime: ' + numberObject.isPrime + '</p>';
+					output.innerHTML += '<hr>';
+				  }
+				}
+				
+				//StringObject
+				function StringObject(inputString) 
+				{
+				  this.inputString = inputString;
+				  this.length = inputString.length;
+				  this.isUpperCase = isStringUpperCase(inputString);
+				  this.isLowerCase = isStringLowerCase(inputString);
+				  this.isPalindrome = isStringPalindrome(inputString);
+				}
+				function isStringUpperCase(inputString) 
+				{
+				  return inputString === inputString.toUpperCase();
+				}
+				function isStringLowerCase(inputString) 
+				{
+				  return inputString === inputString.toLowerCase();
+				}
+				function isStringPalindrome(inputString) 
+				{
+				  var reversedString = inputString.split('').reverse().join('');
+				  return inputString === reversedString;
+				}
+				var stringObjects = [];
+				function addStringObject(event) 
+				{
+				  event.preventDefault(); 
+				  var inputString = document.getElementById('inputString').value;
+				  var stringObject = new StringObject(inputString);
+				  stringObjects.push(stringObject);
+				  document.getElementById('inputString').value = '';
+				  displayStringObjects();
+				}
+				function displayStringObjects() 
+				{
+				  var output = document.getElementById('show4');
+				  output.innerHTML = ''; 
+
+				  for (var i = 0; i < stringObjects.length; i++) 
+				  {
+					var stringObject = stringObjects[i];
+					output.innerHTML += '<p>Input String: ' + stringObject.inputString + '</p>';
+					output.innerHTML += '<p>Length: ' + stringObject.length + '</p>';
+					output.innerHTML += '<p>Is Uppercase: ' + stringObject.isUpperCase + '</p>';
+					output.innerHTML += '<p>Is Lowercase: ' + stringObject.isLowerCase + '</p>';
+					output.innerHTML += '<p>Is Palindrome: ' + stringObject.isPalindrome + '</p>';
+					output.innerHTML += '<hr>';
+				  }
+				}
+			</script>
+		
+    </head>
+    <body>
+		<div class = "div1">
+			<h2 class="heading" >
+				Independent Objects
+			</h2>
+		</div>
+		<img src="https://i.gifer.com/Vp3M.gif" alt="spin"  width="12%" class="img1"> 
+		<img src="https://i.gifer.com/Vp3M.gif" alt="spin"  width="12%" class="img2"> 
+		<div class = "div2">
+			<h1>
+				Array Objects
+			</h1>
+			<form onsubmit="addStudent(event)">
+				<table>
+					<tr>
+						<th>Enter Name: </th>
+						<th><input type="text" id="name" placeholder="Enter Name"required></th>
+					</tr>
+					<tr>
+						<th>Enter Age: </th>
+						<th><input type="number" id="age" placeholder="Enter Age" required></th>
+					</tr>
+					<tr>
+						<th>Enter Hobby: </th>
+						<th><input type="text" id="hobby" placeholder="Enter Hobbies, separate by ',' " required></th>
+					</tr>
+					<tr>
+						<th><input type="reset"></th>
+						<th><button type="submit" value="ADD"> ADD</th>
+					</tr>
+				</table>
+			  </form>
+			  <p id="show"></p>
+		</div>
+		<div class = "div3">
+			<h1>
+				Date Objects
+			</h1>
+			<form onsubmit="addEvent(event)">
+				<table>
+					<tr>
+						<th>Title: </th>
+						<th><input type="text" id="title" required></th>
+					</tr>
+					<tr>
+						<th>Date:</th>
+				        <th><input type="date" id="date" required></th>
+					</tr>
+					<tr>
+						<th><input type="reset"></th>
+						<th><button type="submit"> Submit</th>
+					</tr>
+				</table>
+			</form>
+			<p id="show1"></p>
+		</div>
+		<div class="div4">
+			<h1>
+				Math Objects
+			</h1>
+			<form onsubmit="addMathOperation(event)">
+				<table>
+					<tr>
+						<th>Enter Integer 1: </th>
+						<th><input type="number" id="num1" required></th>
+					</tr>
+					<tr>
+						<th>Enter Operation: </th>
+						<th><input type="text" id="operation" required></th>
+					</tr>
+					<tr>
+						<th>Enter Integer 2: </th>
+						<th><input type="number" id="num2" required></th>
+					</tr>
+					<tr>
+						<th><input type="reset"></th>
+						<th><button type="submit"> Submit</th>
+					</tr>
+				</table>
+			</form>
+			<p id="show2"></p>
+		</div>
+		<div class="div5">
+			<h1>
+				Number Objects
+			</h1>
+			<form onsubmit="addNumberObject(event)">
+				<table>
+					<tr>
+						<th>Number: </th>
+						<th><input type="number" id="number" required></th>
+					</tr>
+					<tr>
+						<th><input type="reset"></th>
+						<th><button type="submit"> Submit</th>
+					</tr>
+				</table>
+			</form>
+			<p id="show3"></p>
+		</div>
+		<div class="div6">
+			<h1>
+				String Objects
+			</h1>
+			<form onsubmit="addStringObject(event)">
+				<table>
+					<tr>
+						<th>Input a Sting(Word): </th>
+						<th><input type="text" id="inputString" required></th>
+					</tr>
+					<tr>
+						<th><input type="reset"></th>
+						<th><button type="submit"> Submit</th>
+					</tr>
+				</table>
+			</form>
+			<p id="show4"></p>
+		</div>
+    </body>
+</html>
